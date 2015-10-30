@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ISO Prices</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+        
+        section {
+            float: left;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ISO Prices</h1>
+    <br>
+    {% for price in prices %}
+        <section>
+            <h2>{{ price[0] }}</h2>
+            <table>
+                <tr>
+                    <th>Zone</th>
+                    <th>$/MWh</th>
+                </tr>
+                {% for row in price[1] %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </section>
+    {% endfor %}
+
+
+
+
+</body>
+</html>
