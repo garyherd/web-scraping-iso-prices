@@ -19,6 +19,7 @@ To install it to a local machine:
 * Install and activate a virtual environment. I did this on a Windows machine:
     * Navigate into project folder
     * From cmd prompt type:
+    
         ```
         >python -m venv venv
         >venv\Scripts\activate
