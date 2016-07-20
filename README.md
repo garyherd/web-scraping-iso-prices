@@ -10,8 +10,6 @@ It uses [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) and [Fl
 
 ## Using/Installing the application
 
-You can view it [here](http://garyherd.pythonanywhere.com/)
-
 To install it to a local machine:
 
 * Install Python 3.5 (I haven't tested with 2.7)
