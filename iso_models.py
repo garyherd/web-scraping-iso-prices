@@ -88,12 +88,11 @@ def get_ERCOT_prices():
           str(date.today()).replace('-', '', 2) + '_real_time_spp'
     try:
         soup = get_soup_obj(url)
+        header_row = \
+            soup.find('table', class_='tableStyle')\
+                .find_all('th', class_="headerValueClass")
     except:
         return zip(headers, lmps)
-
-    header_row = \
-        soup.find('table', class_='tableStyle')\
-            .find_all('th', class_="headerValueClass")
 
     for elem in header_row[-6:]:
         headers.append(elem.string)
