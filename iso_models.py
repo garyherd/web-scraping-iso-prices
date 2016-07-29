@@ -9,6 +9,11 @@ def get_soup_obj(url):
     soup = BeautifulSoup(html, 'html.parser')
     return soup
 
+
+def format_price(price_str):
+    return '{0:.2f}'.format(float(price_str))
+
+
 def get_ISONE_prices():
     prices = []
 
@@ -37,7 +42,7 @@ def get_ISONE_prices():
             data.append(row)
 
     for row in data:
-        prices.append((zones[row[3]], row[-1]))
+        prices.append((zones[row[3]], format_price(row[-1])))
 
     return prices
 
@@ -59,7 +64,7 @@ def get_NYISO_prices():
         first_column_contents = columns[0].font.contents
         last_column_contents = columns[-1].font.contents
         if re.match(r'[A-Z]+', first_column_contents[0]):
-            prices.append((first_column_contents[0], last_column_contents[0]))
+            prices.append((first_column_contents[0], format_price(last_column_contents[0])))
 
     return prices
 
@@ -76,7 +81,7 @@ def get_PJM_prices():
     for child in target_rows:
         columns = child.find_all('td')
         if columns[1].string == 'ZONE':
-            prices.append((columns[0].string, columns[3].string))
+            prices.append((columns[0].string, format_price(columns[3].string)))
 
     return prices
 
@@ -101,6 +106,6 @@ def get_ERCOT_prices():
     last_row = rows[-1].find_all('td')
 
     for elem in last_row[-6:]:
-        lmps.append(elem.string)
+        lmps.append(format_price(elem.string))
 
     return zip(headers, lmps)
